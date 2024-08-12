@@ -1,0 +1,89 @@
+                         Html in
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparkel-button</title>
+    <link rel="stylesheet" href="first.css">
+</head>
+<body>
+    <button class="btn">Hover Me!</button>
+    
+</body>
+</html>
+
+
+
+                      in css
+body {
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #161616;
+    overflow: hidden;
+    transform: scale(1.5);
+
+}
+/*.button.*/
+.btn {
+    padding: 15px 40px ;
+    border: none;
+    outline: none;
+    color: #ffff;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 12px;
+
+}
+.btn::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    background-color: #333;
+    left:0;
+    top:0;
+    border-radius: 10px;
+
+}
+.btn::before {
+    content: "";
+    background: linear-gradient(
+        45deg,
+        #ff0000, #ff7300, #fffB00, #48ff00,
+        #00ffD5, #002Bff, #ff00C8, #ff0000
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 600%;
+    z-index: -1;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+    transition: opacity 3s ease-in-out;
+    border-radius: 10px;
+    opacity: 0;
+
+}
+@keyframes glowing {
+    0%{backgound-position: 0 0;}
+    15%{background-position: 400% 0;}
+    100%{background-position: 0 0;}
+}
+/*hover*/
+.btn:hover::before {
+    opacity: 1;
+}
+.btn:active::after{
+    background: transparent
+
+}
+.btn:active {
+    color: #000;
+    font-weight: bold;
+}
